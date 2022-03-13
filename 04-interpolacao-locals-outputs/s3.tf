@@ -3,6 +3,14 @@ resource "aws_s3_bucket" "this" {
   tags   = local.common_tags
 }
 
+resource "aws_s3_bucket" "manual" {
+  bucket = "my-bucket-12344321"
+  tags = {
+    ImportedAt = "13/03/2022"
+    ManagedBy  = "Terraform"
+  }
+}
+
 resource "aws_s3_object" "this" {
   bucket       = aws_s3_bucket.this.bucket
   key          = "config/${local.ip_file_path}"
